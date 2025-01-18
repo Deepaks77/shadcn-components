@@ -1,27 +1,60 @@
 "use client";
 
+import CarouselComponent from "./Carousel";
+
+const stories = [
+  {
+    title: "Super Bowl 2024",
+    subtitle: "A match in which all aspects matter",
+    image:
+      "https://img.freepik.com/free-vector/digital-technology-polygon-connection-background_1035-17976.jpg", // Replace with actual paths
+  },
+  {
+    title: "Title 2",
+    subtitle: "Another catchy subtitle",
+    image:
+      "https://wallpapers.com/images/hd/links-background-links-d70sw6qw0wm2s43v.jpg",
+  },
+  {
+    title: "Title 3",
+    subtitle: "Another catchy subtitle",
+    image: "https://wallpapers.com/images/featured/link-16mi3e7v5hxno9c4.jpg",
+  },
+];
+
 const TravelStories = () => {
   return (
-    <section className="bg-gray-100 py-8 px-6">
-      <h3 className="text-xl font-semibold mb-4">Travel Stories</h3>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {Array(3)
-          .fill(0)
-          .map((_, idx) => (
-            <div
-              key={idx}
-              className="bg-cover bg-center h-40 rounded-lg shadow-lg relative"
-              style={{ backgroundImage: `url(/path/to/image-${idx}.jpg)` }}
-            >
-              <div className="absolute inset-0 bg-black bg-opacity-50 text-white p-4 flex flex-col justify-end">
-                <p className="font-semibold">Title {idx + 1}</p>
-                <a href="#" className="text-sm underline">
-                  Read Full Story
-                </a>
-              </div>
-            </div>
-          ))}
+    <section className="py-10 bg-gray-100 px-4 sm:px-6 lg:px-12">
+      <div className="text-center mb-8">
+        <h3 className="text-2xl font-bold">Travel Stories</h3>
+        <p className="text-gray-600">We’re so much more than a car service</p>
       </div>
+      {/* Desktop Grid */}
+      <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {stories.map((story, index) => (
+          <div
+            key={index}
+            className="relative bg-cover bg-center h-64 rounded-lg shadow-lg overflow-hidden"
+            style={{ backgroundImage: `url(${story.image})` }}
+          >
+            <div className="absolute inset-0 bg-black bg-opacity-40 p-6 flex flex-col justify-between">
+              <div>
+                <h4 className="text-white text-xl font-bold">{story.title}</h4>
+                <p className="text-white text-sm">{story.subtitle}</p>
+              </div>
+              <a
+                href="#"
+                className="text-white font-semibold underline self-start"
+              >
+                Read Full Story →
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Mobile Carousel */}
+      <CarouselComponent />
     </section>
   );
 };
